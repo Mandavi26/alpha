@@ -1,0 +1,39 @@
+{% extends 'index/base.html' %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-9">
+            <div class="content-box-large">
+                <div class="panel-heading">
+                    <div class="panel-title"><h2 style="color: limegreen">Circle</h2></div>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            {% for item in output %}
+                                <tr>
+                                <td>
+                                    <span class="circle_contents">
+                                        {{ item.username }}
+                                    </span>
+                                    <span class="circle_contents1">
+                                       ({{ item.Uname }})
+                                    </span>
+                                </td>
+                                <td>
+                                    <span title="Remove">
+                                        <a href='/remove/{{ item.username }}'><i class="glyphicon glyphicon-remove glyph_prop"></i>
+                                        </a>
+                                    </span>
+                                </td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+
+{% endblock %}

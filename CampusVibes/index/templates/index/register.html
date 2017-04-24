@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+
+        <link rel="stylesheet" href="../../static/login/css/style.css">
+
+  </head>
+
+  <body>
+
+     <div class="heading">
+      <h1>
+          <span style="color: limegreen">Campus</span><span style="color: #EF3B3A">Vibes</span>
+       </h1>
+     </div>
+
+ <div class="login-page">
+  <div class="form">
+
+    <form class="login-form"  method="post" action="/register/"> {% csrf_token %}
+
+      <input type="text" name="first_name" placeholder="first name"/>
+      <input type="text" name="last_name" placeholder="last name"/>
+      <input type="text" name="username" placeholder="username"/>
+      <input type="email" name="email" placeholder="email address"/>
+      <input type="password" name="password1" placeholder="password"/>
+      <input type="password" name="password2" placeholder="confirm password"/>
+      <button>CREATE</button>
+
+      <p class="message">Already registered? <a href="/login">Sign In</a></p>
+    </form>
+
+  </div>
+</div>
+
+
+    <script src="../../static/login/jq/login.js"></script>
+
+        <script src="../../static/login/js/index.js"></script>
+
+  </body>
+</html>

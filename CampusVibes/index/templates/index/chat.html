@@ -1,0 +1,152 @@
+{% load staticfiles %}
+
+<html>
+  <head>
+    <title>CampusVibes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="../../static/home/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- styles -->
+    <link href="../../static/home/css/styles.css" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../static/chat/chat.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </head>
+
+  <body style="background: #f7f7f7">
+  	<div class="header">
+	     <div class="container">
+	        <div class="row">
+	           <div class="col-md-10">
+	              <!-- Logo -->
+	              <div class="logo">
+	                 <h1><a href="home.html">
+                         <span style="color: limegreen">Campus</span><span style="color: #EF3B3A">Vibes</span>
+                     </a></h1>
+	              </div>
+	           </div>
+	           <div class="col-cs-2" align="center">
+	              <h3>
+                      <span style="color: lightgray">
+                          {{ request.user }}
+                      </span>
+                  </h3>
+	           </div>
+	        </div>
+	     </div>
+	</div>
+
+    <div class="page-content">
+    	<div class="row">
+		  <div class="col-md-2">
+		  	<div class="sidebar content-box" style="display: block;">
+                <ul class="nav">
+                    <!-- Main menu -->
+                    <li class="current"><a href="/home/"><i class="glyphicon glyphicon-home"></i> Dashboard</a></li>
+                    <li><a href="/chat_circle/"><i class="glyphicon glyphicon-pencil"></i> Chat</a></li>
+                    <li><a href="/circle/"><i class="glyphicon glyphicon-globe"></i> Circle</a></li>
+                    <li><a href="/add/"><i class="glyphicon glyphicon-plus"></i> Add</a></li>
+                    <li><a href="/notifications/"><i class="glyphicon glyphicon-record"></i> Notifications</a></li>
+                    <li>
+					{% if user.is_authenticated %}
+					<a href="/logout/"><i class="glyphicon glyphicon-log-out"></i>Logout</a>
+					{% else %}
+					<a href="/login/?next={{ request.path }}">Login</a>
+                    {% endif %}
+					</li>
+
+                </ul>
+             </div>
+		  </div>
+
+
+		  <div class="col-md-8 col-md-offset-1">
+
+
+
+              <div class="row">
+                  <div class="col-md-11">
+                      <div class="chat-content-box-large">
+                          <div class="chat-panel-heading row">
+                              <div class="col-md-6">
+                                  <div class="chat-panel-title">
+                                      <span style="color: limegreen">{{ to_user }}</span>
+                                  </div>
+                              </div>
+                              <div class="col-md-2 col-md-offset-4">
+                                  <div class="chat1-panel-title">
+                                      <a href='/clear_chat/{{ to_user }}'>
+                                          <span title="Clear all">
+                                              <i class="glyphicon glyphicon-trash glyph_prop"></i>
+                                          </span>
+                                      </a>
+                                  </div>
+                              </div>
+
+                          </div>
+
+                          <div class="chat-panel-body">
+                              <ul id="msg-list" class="list-group">
+                                  {% for obj in Chat %}
+                                  {% if obj.user == request.user %}
+                                  <li class="text-right list-group-item my-text-font">{{ obj.message }}</li>
+                                  {% else %}
+                                  <li class="text-left list-group-item">{{ obj.message }}</li>
+                                  {% endif %}
+                                  {% empty %}
+                                  <li class="text-right list-group-item" style="color: red">No messages yet!</li>
+                                  {% endfor %}
+                                  <script>
+                                  var chatlist = document.getElementById('msg-list-div');
+                                  chatlist.scrollTop = chatlist.scrollHeight;
+                                  </script>
+                              </ul>
+                          </div>
+                          <form id="chat-form" method="post" action="/post/{{ to_user }}"> {% csrf_token %}
+                              <div id="chat-bottom" class="input-group">
+                                  <input type="text" autocomplete="off" id="chat-msg" name="chat-msg" class="form-control"/>
+                                  <span class="input-group-btn">
+                                      <input class="btn btn-default" id="send" type="submit" value="Send"/>
+                                  </span>
+                              </div>
+                          </form>
+                      </div>
+                  </div>
+              </div>
+
+
+
+
+           </div>
+        </div>
+    </div>
+
+
+<!-- code for chat window -->
+
+
+    <footer>
+         <div class="container">
+
+            <div class="copy text-center">
+               Copyright © 2016 <a href='#'>CampusVibes</a>
+            </div>
+
+         </div>
+      </footer>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/custom.js"></script>
+  </body>
+<script src= "../../static/chat/chat.js" ></script>
+</html>

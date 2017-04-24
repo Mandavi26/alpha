@@ -1,0 +1,48 @@
+{% extends 'index/base.html' %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="content-box-large">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="panel-title">
+                                <span class="hello-post">
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Notifications
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-md-offset-3">
+                            <div class="panel-title">
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href='/clear_notifications/'>
+                                    <span title="Clear all">
+                                    <i class="glyphicon glyphicon-trash glyph_prop" style="font-size:25px"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            {% for item in all %}
+                                <tr>
+                                <td>
+                                    <span class="circle_contents">
+                                        {{ item.text }}
+                                    </span>
+                                </td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+
+{% endblock %}

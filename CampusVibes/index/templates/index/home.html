@@ -1,0 +1,56 @@
+{% extends 'index/base.html' %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="content-box-large">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        <span class = "hello-post">
+                            Hello {{ request.user.first_name }} {{ request.user.last_name }}!
+                        </span>
+                    </div>
+                </div>
+                <div class = "panel-body">
+                    <span class = "hello-post">
+                        Welcome to
+                        <span class = "welcome-post">Campus</span><span class = "welcome-post" style="color: lightcoral">Vibes</span>
+                    </span>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-md-offset-1">
+            <div class="content-box-large">
+                <div class="panel-heading">
+                    <div class="panel-title"><h2 style="color: lightcoral">Online Users</h2></div>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            {% for item in output2 %}
+                                <tr>
+                                <td>
+                                    <span class="online">
+                                        {{ item }}
+                                    </span>
+                                </td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+
+{% endblock %}
